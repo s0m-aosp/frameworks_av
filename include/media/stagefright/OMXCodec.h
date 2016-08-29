@@ -313,6 +313,10 @@ private:
     status_t allocateBuffersOnPort(OMX_U32 portIndex);
     status_t allocateOutputBuffersFromNativeWindow();
 
+#ifdef MTK_HARDWARE
+    void setHalWindowColorFormat(OMX_COLOR_FORMATTYPE &eHalColorFormat);
+#endif
+
     status_t queueBufferToNativeWindow(BufferInfo *info);
     status_t cancelBufferToNativeWindow(BufferInfo *info);
     BufferInfo* dequeueBufferFromNativeWindow();
@@ -431,3 +435,4 @@ status_t getOMXChannelMapping(size_t numChannels, OMX_AUDIO_CHANNELTYPE map[]);
 }  // namespace android
 
 #endif  // OMX_CODEC_H_
+

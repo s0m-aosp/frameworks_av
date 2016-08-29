@@ -233,6 +233,17 @@ ifeq ($(DTS_CODEC_M_), true)
   LOCAL_CFLAGS += -DDTS_CODEC_M_
 endif
 
+# Mediatek
+ifeq ($(strip $(BOARD_HAS_MTK_HARDWARE)),true)
+LOCAL_CFLAGS += -DMTK_HARDWARE
+
+LOCAL_C_INCLUDES += \
+	$(TOP)/hardware/mediatek/dpframework/inc
+
+LOCAL_SHARED_LIBRARIES += \
+	libdpframework
+endif
+
 LOCAL_MODULE:= libstagefright
 
 LOCAL_MODULE_TAGS := optional
@@ -240,3 +251,4 @@ LOCAL_MODULE_TAGS := optional
 include $(BUILD_SHARED_LIBRARY)
 
 include $(call all-makefiles-under,$(LOCAL_PATH))
+
